@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package users.v1;
+
+service UsersService {
+  rpc GetServiceStatus(GetServiceStatusRequest) returns (GetServiceStatusResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {}
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+}
+
+message User {
+  int32 id = 1;
+  int32 user_id = 2;
+  string firstname = 3;
+  string lastname = 4;
+  string email_address = 5;
+}
+enum CreateUserStatus {
+  CREATE_USER_STATUS_UNSPECIFIED = 0;
+  CREATE_USER_STATUS_SUCCESS = 1;
+  CREATE_USER_STATUS_ERROR = 2;
+}
+
+message GetServiceStatusRequest {}
+message StatusReponse {
+  string service = 1;
+  string status = 2;
+}
+message GetServiceStatusResponse {
+  StatusReponse message = 1;
+}
+
+message GetUserRequest {
+  int64 user_id = 1;
+}
+message GetUserResponse {
+  User message = 1;
+}
+
+message GetUsersRequest {}
+message GetUsersResponse {
+  repeated User message = 1;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+message CreateUserResponse {
+  CreateUserStatus status = 1;
+  string message = 2;
+}

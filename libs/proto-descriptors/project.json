@@ -1,0 +1,45 @@
+{
+  "name": "@mono/proto-descriptors",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/proto-descriptors/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "make-gen-script-executable": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/proto-descriptors",
+        "command": "chmod +x generate-ts-files.sh"
+      }
+    },
+    "generate-ts-from-proto": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/proto-descriptors",
+        "command": "./generate-ts-files.sh"
+      },
+      "dependsOn": [
+        "make-gen-script-executable"
+      ]
+    },
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/proto-descriptors",
+        "main": "libs/proto-descriptors/src/index.ts",
+        "tsConfig": "libs/proto-descriptors/tsconfig.lib.json",
+        "assets": [
+          "libs/proto-descriptors/src/**/*.proto"
+        ]
+      },
+      "dependsOn": [
+        "generate-ts-from-proto"
+      ]
+    }
+  }
+}

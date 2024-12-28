@@ -1,0 +1,34 @@
+{
+  "name": "@mono/commons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/commons/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "generate-barrels": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/commons",
+        "command": "pnpm run generate-barrels"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/commons",
+        "main": "libs/commons/src/index.ts",
+        "tsConfig": "libs/commons/tsconfig.lib.json",
+        "assets": [
+          "libs/commons/*.md"
+        ]
+      },
+      "dependsOn": [
+        "generate-barrels"
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@mono/services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "generate-barrels": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/services",
+        "command": "pnpm run generate-barrels"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/services",
+        "main": "libs/services/src/index.ts",
+        "tsConfig": "libs/services/tsconfig.lib.json",
+        "assets": [
+          "libs/services/*.md"
+        ]
+      },
+      "dependsOn": [
+        "generate-barrels"
+      ]
+    }
+  }
+}
