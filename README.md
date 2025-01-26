@@ -4,7 +4,7 @@ Mono is a project born to train myself on general back-end development, general 
 
 I will also leverage the complexity of a monorepo to have a "real" usecase to improve in Cloud Architecture and help me get the Google Cloud Architect certification.
 
-#### WIP - This project is nowhere near finish and will evolve in the future,
+#### WIP - This project is nowhere near finish and will evolve in the future.
 
 ## Usage
 
