@@ -15,20 +15,14 @@
     },
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/commons",
         "main": "libs/commons/src/index.ts",
         "tsConfig": "libs/commons/tsconfig.lib.json",
-        "assets": [
-          "libs/commons/*.md"
-        ]
+        "assets": ["libs/commons/*.md"]
       },
-      "dependsOn": [
-        "generate-barrels"
-      ]
+      "dependsOn": ["generate-barrels"]
     }
   }
 }

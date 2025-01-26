@@ -15,20 +15,14 @@
     },
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/services",
         "main": "libs/services/src/index.ts",
         "tsConfig": "libs/services/tsconfig.lib.json",
-        "assets": [
-          "libs/services/*.md"
-        ]
+        "assets": ["libs/services/*.md"]
       },
-      "dependsOn": [
-        "generate-barrels"
-      ]
+      "dependsOn": ["generate-barrels"]
     }
   }
 }
