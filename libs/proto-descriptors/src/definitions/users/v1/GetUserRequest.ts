@@ -3,9 +3,9 @@
 import type { Long } from '@grpc/proto-loader';
 
 export interface GetUserRequest {
-  'userId'?: (number | string | Long);
+  userId?: number | string | Long;
 }
 
 export interface GetUserRequest__Output {
-  'userId'?: (Long);
+  userId?: Long;
 }
