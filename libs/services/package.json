@@ -2,6 +2,13 @@
   "name": "@mono/services",
   "version": "0.0.1",
   "dependencies": {
+    "@grpc/grpc-js": "~1.12.5",
+    "@opentelemetry/api": "~1.9.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "~0.57.0",
+    "@opentelemetry/resources": "~1.30.0",
+    "@opentelemetry/sdk-metrics": "~1.30.0",
+    "@opentelemetry/sdk-node": "~0.57.0",
+    "@opentelemetry/semantic-conventions": "~1.28.0",
     "tslib": "~2.3.0"
   },
   "type": "commonjs",
@@ -9,6 +16,6 @@
   "typings": "./src/index.d.ts",
   "private": true,
   "scripts": {
-    "generate-barrels": "npx barrelsby --delete -d ./src"
+    "generate-barrels": "npx barrelsby -q --delete -d ./src"
   }
 }

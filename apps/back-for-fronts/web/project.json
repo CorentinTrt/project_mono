@@ -54,6 +54,14 @@
         }
       }
     },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "apps/back-for-fronts/web",
+        "command": "prettier . --check"
+      }
+    },
     "test": {
       "options": {
         "passWithNoTests": true

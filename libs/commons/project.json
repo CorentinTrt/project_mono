@@ -23,6 +23,14 @@
         "assets": ["libs/commons/*.md"]
       },
       "dependsOn": ["generate-barrels"]
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/commons",
+        "command": "prettier . --check"
+      }
     }
   }
 }

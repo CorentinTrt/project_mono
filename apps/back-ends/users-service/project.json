@@ -54,6 +54,14 @@
         }
       }
     },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "apps/back-ends/users-service",
+        "command": "prettier . --check"
+      }
+    },
     "test": {
       "options": {
         "passWithNoTests": true

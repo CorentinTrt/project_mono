@@ -1,5 +1,4 @@
 import openTelemetryAPI, { Tracer } from '@opentelemetry/api';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 
 import { OpenTelemetrySDK, ServiceNames } from '@mono/services';

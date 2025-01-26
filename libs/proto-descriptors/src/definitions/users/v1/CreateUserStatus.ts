@@ -15,4 +15,4 @@ export type CreateUserStatus =
   | 2;
 
 export type CreateUserStatus__Output =
-  (typeof CreateUserStatus)[keyof typeof CreateUserStatus];
+  typeof CreateUserStatus[keyof typeof CreateUserStatus];

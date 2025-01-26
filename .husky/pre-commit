@@ -1,0 +1,22 @@
+#!/bin/bash
+
+PURPLE='\033[1;35m'
+RESET='\033[0m'
+
+echo "${PURPLE}pre-commit${RESET} - [start]"
+
+echo "${PURPLE}pre-commit${RESET} - Check formatting [start]"
+{
+  nx affected -t format:check
+} || {
+  echo "${PURPLE}pre-commit${RESET} - Check formatting [failed]. Run nx format:write to solve the issue."
+}
+
+echo "${PURPLE}pre-commit${RESET} - Check linting [start]"
+{
+  nx affected -t lint
+} || {
+  echo "${PURPLE}pre-commit${RESET} - Check linting [failed]."
+}
+
+echo "${PURPLE}pre-commit${RESET} - [end]"

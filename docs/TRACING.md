@@ -67,7 +67,10 @@ To properly manage incoming request and ensuring the propagation of the Trace co
 // ts example for http context extraction
 
 // extract the context
-const ctxParent = extractOtelCtx({ traceparent: request.headers['traceparent-id'] as string }, defaultTextMapGetter);
+const ctxParent = extractOtelCtx(
+  { traceparent: request.headers['traceparent-id'] as string },
+  defaultTextMapGetter
+);
 // create a new span with this context
 const span = tracer.startSpan('<span_name>', {}, ctxParent);
 
