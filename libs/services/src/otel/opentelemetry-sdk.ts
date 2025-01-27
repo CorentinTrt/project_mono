@@ -10,7 +10,7 @@ import {
 } from '@opentelemetry/sdk-metrics';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 
-import { ServiceNames } from '@mono/services';
+import { ServiceNames } from '../index';
 
 class OpenTelemetrySDK {
   private sdk: NodeSDK;

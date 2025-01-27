@@ -3,7 +3,7 @@ import * as path from 'path';
 
 import type { FastifyInstance } from 'fastify';
 
-interface AppOptions {}
+type AppOptions = object;
 
 const router = async (fastify: FastifyInstance, opts: AppOptions) => {
   fastify.register(AutoLoad, {

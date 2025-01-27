@@ -2,6 +2,8 @@
   "name": "@mono/commons",
   "version": "0.0.1",
   "dependencies": {
+    "@fastify/sensible": "~5.2.0",
+    "@opentelemetry/semantic-conventions": "~1.28.0",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",
@@ -9,6 +11,6 @@
   "typings": "./src/index.d.ts",
   "private": true,
   "scripts": {
-    "generate-barrels": "npx barrelsby --delete -d ./src"
+    "generate-barrels": "npx barrelsby -q --delete -d ./src"
   }
 }

@@ -23,6 +23,14 @@
         "assets": ["libs/models/*.md"]
       },
       "dependsOn": ["generate-barrels"]
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "libs/models",
+        "command": "prettier . --check"
+      }
     }
   }
 }

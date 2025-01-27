@@ -1,9 +1,9 @@
 interface Repository<T> {
-  create?: ({}: T) => void;
-  read?: ({}: T) => T | undefined;
-  readMultiple?: ({}: T[]) => T[];
-  update?: ({}: T) => void;
-  delete?: ({}: T) => void;
+  create?: (object: T) => void;
+  read?: (object: T) => T | undefined;
+  readMultiple?: (object: T[]) => T[];
+  update?: (object: T) => void;
+  delete?: (object: T) => void;
 }
 
 export { Repository };

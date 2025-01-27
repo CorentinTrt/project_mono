@@ -9,6 +9,6 @@
   "typings": "./src/index.d.ts",
   "private": true,
   "scripts": {
-    "generate-barrels": "npx barrelsby --delete -d ./src"
+    "generate-barrels": "npx barrelsby -q --delete -d ./src"
   }
 }

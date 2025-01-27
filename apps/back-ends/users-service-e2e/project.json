@@ -12,6 +12,14 @@
         "passWithNoTests": true
       },
       "dependsOn": ["@mono/users-service:build"]
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "cwd": "apps/back-ends/users-service-e2e",
+        "command": "prettier . --check"
+      }
     }
   }
 }

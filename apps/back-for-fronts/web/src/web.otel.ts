@@ -1,6 +1,5 @@
 import { IncomingMessage } from 'http';
 import openTelemetryAPI, { Tracer } from '@opentelemetry/api';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 

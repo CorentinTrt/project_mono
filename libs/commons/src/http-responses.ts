@@ -1,16 +1,16 @@
 interface HttpError {
   message: string;
-  input: {};
+  input: object;
 }
 interface HttpResponse {
-  content?: {};
+  content?: object;
   error?: HttpError;
 }
 
 class ErrorResponse implements HttpResponse {
   error: HttpError;
 
-  constructor(message: string, input: {}) {
+  constructor(message: string, input: object) {
     this.error = {
       message,
       input,
@@ -19,9 +19,9 @@ class ErrorResponse implements HttpResponse {
 }
 
 class SuccessResponses implements HttpResponse {
-  content?: {};
+  content?: object;
 
-  constructor(content: {}) {
+  constructor(content: object) {
     this.content = content;
   }
 }
