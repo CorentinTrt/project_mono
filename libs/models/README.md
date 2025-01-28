@@ -1,11 +1,20 @@
-# models
+# @mono/models
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
+This library centralize:
 
-Run `nx build models` to build the library.
+- data related operations
+- modules to interact with the DB
 
-## Running unit tests
+## Usages
 
-Run `nx test models` to execute the unit tests via [Jest](https://jestjs.io).
+```sh
+$ nx build @mono/models
+# to build the library
+```
+
+```sh
+$ nx test @mono/models
+# to run unit tests
+```

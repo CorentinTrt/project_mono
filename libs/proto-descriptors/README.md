@@ -1,7 +1,16 @@
-# proto-descriptors
+# @mono/proto-descriptors
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
+This library centralize:
 
-Run `nx build proto-descriptors` to build the library.
+- `.proto` related modules
+- types and declarations generated from `.proto` files
+
+## Usages
+
+```sh
+$ nx build @mono/proto-descriptors
+# to build the library
+`
+```

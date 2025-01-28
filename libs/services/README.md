@@ -1,11 +1,20 @@
-# services
+# @mono/services
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
+This library centralize:
 
-Run `nx build services` to build the library.
+- global service related modules (_e.g Otel SDK factory, etc._)
+- service related constants
 
-## Running unit tests
+## Usages
 
-Run `nx test services` to execute the unit tests via [Jest](https://jestjs.io).
+```sh
+$ nx build @mono/services
+# to build the library
+```
+
+```sh
+$ nx test @mono/services
+# to run unit tests
+```

@@ -6,7 +6,7 @@ I will also leverage the complexity of a monorepo to have a "real" usecase to im
 
 #### WIP - This project is nowhere near finish and will evolve in the future.
 
-## Usage
+## Usages
 
 ```sh
 $ nx serve <app_name>
