@@ -1,0 +1,82 @@
+name: Check commit
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+jobs:
+  check-commit-message:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout code
+        id: checkout_code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        id: setup_node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check commit message against conventional commits syntax
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|security|style|tests)(\(.+?\))?: .{1,}$'
+          flags: 'g'
+          error: '[ERROR] Commit message does not respect conventional commits syntax'
+          checkAllCommitMessages: true
+          excludeTitle: true
+          excludeDescription: true
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check commit message length
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^.{1,72}$'
+          flags: 'g'
+          error: '[ERROR] Commit message is too long'
+          checkAllCommitMessages: true
+          excludeTitle: true
+          excludeDescription: true
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+  check-commit-count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout code
+        id: checkout_code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        id: setup_node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Count commits
+        id: count_commits
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const { data: commits } = await github.rest.pulls.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+            const commitCount = commits.length;
+            core.setOutput('commit_count', commitCount);
+
+      - name: Check commit count
+        if: steps.count_commits.outputs.commit_count > 1
+        run: |
+          echo "[ERROR] This PR has more than 1 commit. Please squash your commits"
+          exit 1
+
+
+
