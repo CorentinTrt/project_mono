@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PURPLE='\033[1;35m'
+RESET='\033[0m'
+
+commit_msg_file=$1
+commit_message=$(cat "$commit_msg_file")
+conventional_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|security|style|tests)(\(.+?\))?: .{1,}$"
+
+echo "${PURPLE}commit-msg${RESET} - [start]"
+
+echo "${PURPLE}commit-msg${RESET} - Check commit message [start]"
+
+{
+  echo "$commit_message" | grep -qE "$conventional_regex"
+} || {
+  echo "${PURPLE}commit-msg${RESET} - Check commit message [failed]."
+  exit 1
+}
+
+echo "${PURPLE}commit-msg${RESET} - Check commit message length [start]"
+
+{
+  echo "$commit_message" | grep -qE "^.{1,72}$"
+} || {
+  echo "${PURPLE}commit-msg${RESET} - Check commit message length [failed]."
+  exit 1
+}
+
+echo "${PURPLE}commit-msg${RESET} - [end]"
