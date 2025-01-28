@@ -1,11 +1,19 @@
-# commons
+# @mono/commons
 
 This library was generated with [Nx](https://nx.dev).
 
-## Building
+This library centralize:
 
-Run `nx build commons` to build the library.
+- general purpose modules (_e.g mappers, normalizer, etc._)
 
-## Running unit tests
+## Usages
 
-Run `nx test commons` to execute the unit tests via [Jest](https://jestjs.io).
+```sh
+$ nx build @mono/commons
+# to build the library
+```
+
+```sh
+$ nx test @mono/commons
+# to run unit tests
+```
