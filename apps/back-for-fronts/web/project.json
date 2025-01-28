@@ -7,22 +7,16 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/back-for-fronts/web",
-        "format": [
-          "cjs"
-        ],
+        "format": ["cjs"],
         "bundle": false,
         "main": "apps/back-for-fronts/web/src/web.main.ts",
         "tsConfig": "apps/back-for-fronts/web/tsconfig.app.json",
-        "assets": [
-          "apps/back-for-fronts/web/src/assets"
-        ],
+        "assets": ["apps/back-for-fronts/web/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -46,9 +40,7 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "buildTarget": "@mono/bffs/web:build",
         "runBuildTargetDependencies": false
@@ -64,9 +56,7 @@
     },
     "docker-build": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "cwd": "apps/back-for-fronts/web",
         "command": "docker build -f Dockerfile . -t mono/bffs/web"
@@ -76,8 +66,7 @@
       "executor": "nx:run-commands",
       "cache": true,
       "options": {
-        "cwd": "apps/back-for-fronts/web",
-        "command": "prettier . --check"
+        "command": "prettier apps/back-for-fronts/web --check"
       }
     },
     "test": {

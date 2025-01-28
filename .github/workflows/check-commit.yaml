@@ -77,6 +77,3 @@ jobs:
         run: |
           echo "[ERROR] This PR has more than 1 commit. Please squash your commits"
           exit 1
-
-
-

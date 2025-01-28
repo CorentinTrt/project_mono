@@ -17,8 +17,7 @@
       "executor": "nx:run-commands",
       "cache": true,
       "options": {
-        "cwd": "apps/back-ends/users-service-e2e",
-        "command": "prettier . --check"
+        "command": "prettier apps/back-ends/users-service-e2e --check"
       }
     }
   }

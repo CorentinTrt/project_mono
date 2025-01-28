@@ -28,8 +28,7 @@
       "executor": "nx:run-commands",
       "cache": true,
       "options": {
-        "cwd": "libs/models",
-        "command": "prettier . --check"
+        "command": "prettier libs/models --check"
       }
     }
   }
