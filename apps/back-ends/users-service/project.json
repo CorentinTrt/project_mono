@@ -7,22 +7,16 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/back-ends/users-service",
-        "format": [
-          "cjs"
-        ],
+        "format": ["cjs"],
         "bundle": false,
         "main": "apps/back-ends/users-service/src/users.main.ts",
         "tsConfig": "apps/back-ends/users-service/tsconfig.app.json",
-        "assets": [
-          "apps/back-ends/users-service/src/assets"
-        ],
+        "assets": ["apps/back-ends/users-service/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -47,9 +41,7 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "buildTarget": "@mono/users-service:build",
         "runBuildTargetDependencies": false
@@ -65,9 +57,7 @@
     },
     "docker-build": {
       "executor": "nx:run-commands",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
         "cwd": "apps/back-ends/users-service",
         "command": "docker build -f Dockerfile . -t mono/users-service"
@@ -77,8 +67,7 @@
       "executor": "nx:run-commands",
       "cache": true,
       "options": {
-        "cwd": "apps/back-ends/users-service",
-        "command": "prettier . --check"
+        "command": "prettier apps/back-ends/users-service --check"
       }
     },
     "test": {

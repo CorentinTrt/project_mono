@@ -10,6 +10,7 @@ echo "${PURPLE}pre-commit${RESET} - Check formatting [start]"
   nx affected -t format:check
 } || {
   echo "${PURPLE}pre-commit${RESET} - Check formatting [failed]. Run nx format:write to solve the issue."
+  exit 1
 }
 
 echo "${PURPLE}pre-commit${RESET} - Check linting [start]"
@@ -17,6 +18,7 @@ echo "${PURPLE}pre-commit${RESET} - Check linting [start]"
   nx affected -t lint
 } || {
   echo "${PURPLE}pre-commit${RESET} - Check linting [failed]."
+  exit 1
 }
 
 echo "${PURPLE}pre-commit${RESET} - [end]"
