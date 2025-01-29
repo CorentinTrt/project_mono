@@ -1,0 +1,53 @@
+name: Build services images
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+
+jobs:
+  build-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        id: checkout_code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node
+        id: setup_node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build images of affected services
+        run: npx nx affected --base=origin/main --head=$GITHUB_SHA -t docker-build
+
+      - name: Save Docker images
+        run: |
+          docker_images=($(docker images --format "{{.Repository}}" | sort -u))
+          for image in "${docker_images[@]}"; do
+            docker save $image | gzip > $image.tar.gz
+          done
+
+      - name: Upload images as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-images
+          path: ~/**/*.tar.gz
+          overwrite: true
