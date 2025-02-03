@@ -59,8 +59,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "cwd": "apps/back-ends/users-service",
-        "command": "docker build -f Dockerfile . -t mono/users-service"
+        "command": "docker build -f apps/back-ends/users-service/Dockerfile . -t mono_users-service"
       }
     },
     "format:check": {

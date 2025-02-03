@@ -58,8 +58,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "cwd": "apps/back-for-fronts/web",
-        "command": "docker build -f Dockerfile . -t mono/bffs/web"
+        "command": "docker build -f apps/back-for-fronts/web/Dockerfile . -t mono_bffs_web"
       }
     },
     "format:check": {

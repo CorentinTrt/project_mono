@@ -1,0 +1,58 @@
+name: Push services images to Artifact Registry
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  push-images:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download built images
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-images
+          path: ~/
+          overwrite: true
+
+      - name: Load docker images
+        run: |
+          for image in *.tar.gz; do
+            cat $image | docker load
+          done
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          workload_identity_provider: "projects/${{ secrets.GCP_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider"
+          service_account: ci-registry-writer-sa@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Rename Docker images
+        run: |
+          docker_images=($(docker images --format "{{.Repository}}" | sort -u))
+          for image in "${docker_images[@]}"; do
+            docker image tag $image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/docker-images/$image:latest
+            docker rmi $image
+          done
+
+      - name: Push Docker images
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
+        run: |
+          docker_images=($(docker images --format "{{.Repository}}" | sort -u))
+          for image in "${docker_images[@]}"; do
+            docker push $image:latest
+          done
+
