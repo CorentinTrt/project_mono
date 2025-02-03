@@ -51,3 +51,10 @@ jobs:
           name: docker-images
           path: ~/**/*.tar.gz
           overwrite: true
+
+  call-push-workflow:
+    permissions:
+      id-token: write
+    needs: build-images
+    uses: ./.github/workflows/push-services-images.yaml
+    secrets: inherit

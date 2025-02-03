@@ -10,6 +10,7 @@ import {
   handlerGetUser,
   getUsersHandler,
 } from './handlers';
+// to remove
 import { startOtelSDK } from './user.otel';
 
 import type { UsersServiceHandlers } from '@mono/proto-descriptors';
