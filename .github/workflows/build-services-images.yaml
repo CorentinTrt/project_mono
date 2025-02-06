@@ -41,6 +41,11 @@ jobs:
       - name: Save Docker images
         run: |
           docker_images=($(docker images --format "{{.Repository}}" | sort -u))
+          if [[ -z "$docker_images" ]]; then
+            echo "are_services_affected=false" >> $GITHUB_OUTPUT
+          else
+            echo "are_services_affected=true" >> $GITHUB_OUTPUT
+          fi
           for image in "${docker_images[@]}"; do
             docker save $image | gzip > $image.tar.gz
           done
@@ -51,3 +56,11 @@ jobs:
           name: docker-images
           path: ~/**/*.tar.gz
           overwrite: true
+
+  call-push-workflow:
+    if: needs.build-images.outputs.are_services_affected == 'true'
+    permissions:
+      id-token: write
+    needs: build-images
+    uses: ./.github/workflows/push-services-images.yaml
+    secrets: inherit
