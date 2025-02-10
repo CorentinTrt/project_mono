@@ -12,6 +12,10 @@
 
 - [ ] Create an omitter to prevent some data to be send to client
 
+## CI/CD
+
+- [ ] Create Github actions summaries
+
 ## @mono/bff/web
 
 - [x] Create an interface for get user service (use json schema + schema validation)
