@@ -11,6 +11,7 @@
 ## Global
 
 - [ ] Create an omitter to prevent some data to be send to client
+- [ ] Implement a circuit breaker management system (+ doc on CB & fault tolerance)
 
 ## CI/CD
 
